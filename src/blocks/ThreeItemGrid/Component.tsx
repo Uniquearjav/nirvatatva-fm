@@ -10,8 +10,12 @@ type PriceRangeFields = { priceInUSDMin?: number; priceInUSDMax?: number }
 
 export const ThreeItemGridItem: React.FC<Props> = ({ item, size }) => {
   // Prefer min price if range is set
-  const range = item as Product & Partial<PriceRangeFields>
-  let price: number | undefined = range.priceInUSDMin ?? item.priceInUSD
+  const range = item as Product & Partial<PriceRangeFields> & {
+    priceInUSDMin?: number | null
+  }
+  const priceMin = typeof range.priceInUSDMin === 'number' ? range.priceInUSDMin : undefined
+  const basePrice = typeof item.priceInUSD === 'number' ? item.priceInUSD : undefined
+  let price: number | undefined = priceMin ?? basePrice
 
   if (item.enableVariants && item.variants?.docs?.length) {
     const variant = item.variants.docs[0]

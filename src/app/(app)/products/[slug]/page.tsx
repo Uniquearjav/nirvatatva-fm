@@ -14,6 +14,8 @@ import { Button } from '@/components/ui/button'
 import { ChevronLeftIcon } from 'lucide-react'
 import { Metadata } from 'next'
 
+type PriceRangeFields = { priceInUSDMin?: number; priceInUSDMax?: number }
+
 type Args = {
   params: Promise<{
     slug: string
@@ -82,7 +84,6 @@ export default async function ProductPage({ params }: Args) {
     : product.inventory! > 0
 
   // Compute display price or range
-  type PriceRangeFields = { priceInUSDMin?: number; priceInUSDMax?: number }
   const range = product as Product & Partial<PriceRangeFields>
   let priceMin: number | undefined = range.priceInUSDMin
   let priceMax: number | undefined = range.priceInUSDMax

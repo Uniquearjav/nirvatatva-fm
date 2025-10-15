@@ -86,9 +86,15 @@ export default buildConfig({
     ...plugins,
     // storage-adapter-placeholder
     vercelBlobStorage({
+      enabled: true,
+      clientUploads: true,
       collections: {
-        media: true,
+        media: {
+          prefix: 'media',
+        },
       },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+      access: 'public', // 👈 ensures all uploads are publicly accessible
     }),
   ],
   secret: process.env.PAYLOAD_SECRET || '',

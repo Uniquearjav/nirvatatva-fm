@@ -153,9 +153,9 @@ export const ProductsCollection: CollectionOverride = ({ defaultCollection }) =>
                   type: 'number',
                   label: 'Price Min (USD)',
                   admin: {
-                    description: 'Minimum price to display as a range.'
+                    description: 'Minimum price to display as a range.',
                   },
-                  validate: (val) => {
+                  validate: (val: number | null | undefined): true | string => {
                     if (typeof val === 'number' && val < 0) return 'Price Min must be >= 0'
                     return true
                   },
@@ -165,9 +165,12 @@ export const ProductsCollection: CollectionOverride = ({ defaultCollection }) =>
                   type: 'number',
                   label: 'Price Max (USD)',
                   admin: {
-                    description: 'Maximum price to display as a range.'
+                    description: 'Maximum price to display as a range.',
                   },
-                  validate: (val, { data }) => {
+                  validate: (
+                    val: number | null | undefined,
+                    { data }: { data?: { priceInUSDMin?: number | null } }
+                  ): true | string => {
                     const min = data?.priceInUSDMin
                     if (typeof val === 'number' && val < 0) return 'Price Max must be >= 0'
                     if (typeof val === 'number' && typeof min === 'number' && val < min)

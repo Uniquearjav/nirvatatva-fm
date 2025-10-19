@@ -46,14 +46,20 @@ export function ProductDescription({ product }: { product: Product }) {
       lowestAmount = lowestVariant
       highestAmount = highestVariant
     }
-  } else if (product[priceField] && typeof product[priceField] === 'number') {
-    amount = product[priceField]
-  } else if (
-    typeof (product as any)?.priceInUSDMin === 'number' &&
-    typeof (product as any)?.priceInUSDMax === 'number'
-  ) {
-    lowestAmount = (product as any).priceInUSDMin
-    highestAmount = (product as any).priceInUSDMax
+  } else {
+    // Read range first if provided on the product
+    if (
+      typeof (product as any)?.priceInUSDMin === 'number' &&
+      typeof (product as any)?.priceInUSDMax === 'number'
+    ) {
+      lowestAmount = (product as any).priceInUSDMin
+      highestAmount = (product as any).priceInUSDMax
+    }
+
+    // Also read single amount; render will prefer range over single amount
+    if (product[priceField] && typeof product[priceField] === 'number') {
+      amount = product[priceField]
+    }
   }
 
   return (
@@ -93,3 +99,4 @@ export function ProductDescription({ product }: { product: Product }) {
     </div>
   )
 }
+

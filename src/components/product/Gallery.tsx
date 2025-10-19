@@ -52,9 +52,8 @@ export const Gallery: React.FC<Props> = ({ gallery }) => {
       <div className="relative w-full overflow-hidden mb-8">
         <Media
           resource={gallery[current].image}
-          className="w-full"
-          imgClassName="w-full rounded-lg"
-        />
+          className="rounded scale-80"
+          imgClassName="w-2/3 bg-[whitesmoke] rounded-lg"/>
       </div>
 
       <Carousel setApi={setApi} className="w-full" opts={{ align: 'start', loop: false }}>

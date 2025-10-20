@@ -1787,6 +1787,20 @@ export interface Header {
  */
 export interface Footer {
   id: string;
+  logo?: (string | null) | Media;
+  tagline?: string | null;
+  contact?: {
+    location?: string | null;
+    email?: string | null;
+    phone?: string | null;
+  };
+  socialLinks?:
+    | {
+        platform: 'facebook' | 'instagram' | 'twitter' | 'linkedin' | 'youtube';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   navItems?:
     | {
         link: {
@@ -1833,6 +1847,22 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  logo?: T;
+  tagline?: T;
+  contact?:
+    | T
+    | {
+        location?: T;
+        email?: T;
+        phone?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
   navItems?:
     | T
     | {

@@ -22,7 +22,7 @@ const metrics = [
 
 export default function Sustainability() {
   return (
-    <section id="sustainability" className="container py-20">
+    <section id="sustainability" className="container font-luxury py-20">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-semibold sm:text-4xl">Sustainability in practice</h2>
         <p className="mt-3 text-muted-foreground">

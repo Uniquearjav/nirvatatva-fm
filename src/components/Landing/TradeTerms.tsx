@@ -14,7 +14,7 @@ const terms = [
 
 export default function TradeTerms() {
   return (
-    <section id="trade-terms" className="container py-20">
+    <section id="trade-terms" className="container font-luxury py-20">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="text-3xl font-semibold sm:text-4xl">Global trade on your terms</h2>
         <p className="mt-3 text-muted-foreground">

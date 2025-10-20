@@ -26,6 +26,7 @@
 @theme {
   --font-sans: var(--font-geist-sans), sans-serif;
   --font-mono: var(--font-geist-mono), sans-serif;
+  --font-luxury: var(--font-cormorant), serif;
 }
 
 @utility container {

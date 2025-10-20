@@ -294,6 +294,10 @@ export interface Product {
   priceInUSDEnabled?: boolean | null;
   priceInUSD?: number | null;
   /**
+   * Format: NT followed by digits, e.g. NT12345
+   */
+  sku: string;
+  /**
    * Minimum price to display as a range.
    */
   priceInUSDMin?: number | null;
@@ -1606,6 +1610,7 @@ export interface ProductsSelect<T extends boolean = true> {
   variants?: T;
   priceInUSDEnabled?: T;
   priceInUSD?: T;
+  sku?: T;
   priceInUSDMin?: T;
   priceInUSDMax?: T;
   relatedProducts?: T;

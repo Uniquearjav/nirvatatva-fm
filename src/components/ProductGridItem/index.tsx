@@ -59,7 +59,7 @@ export const ProductGridItem: React.FC<Props> = ({ product }) => {
         />
       )}
 
-      <div className="font-mono text-primary/50 group-hover:text-primary/100 flex justify-between items-center mt-4">
+      <div className="font-luxury text-xl text-primary/50 group-hover:text-primary/100 flex justify-between items-center mt-4">
         <div>{title ?? 'Untitled Product'}</div>
 
         {typeof priceMin === 'number' && typeof priceMax === 'number' ? (

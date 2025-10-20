@@ -24,7 +24,7 @@ export const ProductsCollection: CollectionOverride = ({ defaultCollection }) =>
   ...defaultCollection,
   admin: {
     ...defaultCollection?.admin,
-    defaultColumns: ['title', 'enableVariants', '_status', 'variants.variants'],
+    defaultColumns: ['title', 'sku', 'enableVariants', '_status', 'variants.variants'],
     livePreview: {
       url: ({ data, req }) =>
         generatePreviewPath({
@@ -45,6 +45,7 @@ export const ProductsCollection: CollectionOverride = ({ defaultCollection }) =>
     ...defaultCollection?.defaultPopulate,
     title: true,
     slug: true,
+    sku: true,
     variantOptions: true,
     variants: true,
     enableVariants: true,
@@ -145,6 +146,23 @@ export const ProductsCollection: CollectionOverride = ({ defaultCollection }) =>
         {
           fields: [
             ...defaultCollection.fields,
+            {
+              name: 'sku',
+              type: 'text',
+              label: 'SKU',
+              required: true,
+              unique: true,
+              admin: {
+                description: "Format: NT followed by digits, e.g. NT12345",
+              },
+              validate: (
+                val: string | null | undefined,
+              ): true | string => {
+                if (!val) return 'SKU is required'
+                const ok = /^NT\d+$/.test(val)
+                return ok ? true : 'SKU must start with NT and contain digits only'
+              },
+            },
             {
               type: 'row',
               fields: [
